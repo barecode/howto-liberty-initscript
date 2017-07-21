@@ -1,0 +1,14 @@
+[Unit]
+Description=Liberty
+Documentation=http://wasdev.net
+Requires=mongodb.service
+
+[Service]
+Type=forking
+User=wlp
+PIDFile=/opt/wlp-output/.pid/defaultServer.pid
+ExecStart=/opt/wlp/bin/server start
+ExecStop=/opt/wlp/bin/server stop
+
+[Install]
+WantedBy=multi-user.target

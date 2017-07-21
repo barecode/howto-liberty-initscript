@@ -1,0 +1,34 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:          liberty
+# Required-Start:    $all
+# Required-Stop:     
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start Liberty process on boot
+### END INIT INFO
+
+# Update the target user the process should be run as
+USER=wlp
+
+# Update the server to start (if not using defaultServer)
+SERVER=
+
+case "$1" in
+  start)
+    log_begin_msg "Starting Liberty"
+    sudo -u $USER /opt/wlp/bin/server start $SERVER
+    log_end_msg $?
+    exit 0
+    ;;
+  stop)
+    log_begin_msg "Stopping Liberty"
+    sudo -u $USER /opt/wlp/bin/server stop $SERVER
+    log_end_msg $?
+    exit 0
+    ;;
+  *)
+    echo "Usage: /etc/init.d/liberty {start|stop}"
+    exit 1
+    ;;
+esac
